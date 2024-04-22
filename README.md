@@ -13,3 +13,15 @@
 |   └── 
 └── README.md
 ```
+
+## The book
+
+## Rust specialization on Coursera
+
+## Install Rust 
+
+Run the following command if you are using macOS, Linux, or another Unix-like OS:
+
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
