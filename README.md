@@ -2,6 +2,7 @@
 
 ## Repository structure
 
+```
 .
 ├── the_book
 │   ├── guessing_game
@@ -11,3 +12,4 @@
 |   ├── 
 |   └── 
 └── README.md
+```
