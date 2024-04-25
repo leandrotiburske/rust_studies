@@ -16,6 +16,11 @@ fn own_string(s: String) {
     println!("{}", s);
 }
 
+fn borrow_string(s: &mut String) {
+    s.push_str(" Bye, world!");
+    println!("{s}");
+}
+
 // borrowing is the mechanism by which Rust allows you to lend ownership of a variable to a function 
 // or another part of your program without actually transferring ownership of the variable. 
 // when you borrow a variable, you're essentially saying 
@@ -23,12 +28,18 @@ fn own_string(s: String) {
 fn main() {
     let mut my_vec: Vec<i32> = vec![1, 2, 3, 4, 5];
     let my_int = 10;
-    let my_string = String::from("Hello, world!");
+    let mut my_string = String::from("Hello, world!");
 
     // this compiles no problem!
     own_integer(my_int);
     println!("{}", my_int);
 
+    // check string before borrowing
+    println!("{my_string}");
+    borrow_string(&mut my_string);
+
+    // check variable value after borrowing
+    println!("{my_string}");
     own_string(my_string); // take ownership of my_string
     // this is using my_string which has also moved and is invalid
     //println!("{:?}", my_string); // this will not compile!
