@@ -1,26 +1,32 @@
 // create a function to count words length and get biggest word(s)
 fn longest_word(words: Vec<&str>) { // takes a vector of string slices as input
-    let mut longest: Vec<String> = vec![""]; // create an empty string variable to store the longest 
+
+    let mut longest: Vec<&str> = Vec::new(); // create an empty string variable to store the longest 
+
     for word in words {
-        if word.len() > longest[0].len() {
+        if longest.len() == 0 {
+            longest.push(word);
+        } else if word.len() > longest[0].len() {
             longest = vec![word];
-        } else if {
-            
+        } else if word.len() == longest[0].len() {
+            longest.push(word);
         } else {continue}
     }
-    println!("{longest}");
-    println!("The longest word or words is/are: ", words[])
+    println!("\nThe longest words are: ");
+    for i in longest {
+        println!("{}", i);
+    }
 
 }
 
 fn main() {
     let sentence = "the quick brown fox jumps over the lazy dog".to_string();
     // Use slicing to get the first three characters of the sentence
-    println!("{}", &sentence[0..=4]);
+    // println!("{}", &sentence[0..=4]);
 
     // concatenate using format!
-    let description = format!("Title: Quick story\n{}", sentence);
-    //println!("{}", description);
+    let description = format!("\nTitle: Quick story\n{}", sentence);
+    println!("{}", description);
 
     // iterate over the characters in the sentence
     let mut vowels: i32 = 0;
@@ -46,7 +52,7 @@ fn main() {
         }
     }
 
-    println!("Total count of volwels is {}.", vowels);
+    println!("\nTotal count of volwels is {}.", vowels);
     println!("Total count of 'a' is {}.", a_count);
     println!("Total count of 'e' is {}.", e_count);
     println!("Total count of 'i' is {}.", i_count);
@@ -62,7 +68,7 @@ fn main() {
 
 
     let reversed = sentence.chars().rev().collect::<String>();
-    println!("{}", reversed);
+    println!("\nReverse: \n{}", reversed);
 
 
 }
