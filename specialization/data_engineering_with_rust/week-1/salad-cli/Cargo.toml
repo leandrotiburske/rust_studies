@@ -7,4 +7,5 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.3.4", features = ["derive"] }
+indexmap = "2.2.6"
 rand = "0.8.5"
