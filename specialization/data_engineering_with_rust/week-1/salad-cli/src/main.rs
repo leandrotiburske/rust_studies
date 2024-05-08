@@ -19,12 +19,18 @@ fn main() {
     let num_fruits = opts.number;
 
     // Create the fruit salad
-    create_fruit_salad(num_fruits);
+    let result = create_fruit_salad(num_fruits);
+    let mut result = result.iter().map(|s| &s[..]).collect::<Vec<&str>>();
+
+    // Sort the fruit salad alphabetically
+    result.sort_by(|a, b| a.to_lowercase().cmp(&b.to_lowercase()));
+
 
     // Print the fruit salad in human readable format with a count of fruits used
     println!(
         "Created Fruit salad with {} fruits: {:?}",
+
         num_fruits,
-        create_fruit_salad(num_fruits).sort_by(|a, b| a.to_lowercase().cmp(&b.to_lowercase()))
+        result
     );
 }

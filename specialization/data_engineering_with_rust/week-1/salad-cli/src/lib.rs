@@ -26,6 +26,6 @@ pub fn create_fruit_salad(num_fruits: usize) -> Vec<String> {
         let mut rng = thread_rng();
         let mut fruits = fruits;
         fruits.shuffle(&mut rng);
-        fruits.into_iter().take(num_fruits).collect().sort_by(|a, b| a.to_lowercase().cmp(&b.to_lowercase()))
+        fruits.into_iter().take(num_fruits).collect()
     }
 }
