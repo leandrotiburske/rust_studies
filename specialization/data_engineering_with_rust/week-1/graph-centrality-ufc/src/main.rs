@@ -1,3 +1,4 @@
+// Load libraries to process graph
 use petgraph::graph::{NodeIndex, UnGraph};
 use petgraph::Direction;
 use std::fmt;
@@ -59,6 +60,7 @@ fn main() {
         let name = &fighters[i].name;
         let degree = graph.edges_directed(node, Direction::Outgoing).count() as f32;
         let closeness = 1.0 / degree;
+
         println!("The closeness centrality of {} is {:.2}", name, closeness);
 
         // Explanation
