@@ -23,7 +23,8 @@
 * - Prints timing metrics for simulation
 */
 
-use std::sync::{Arc, Mutex};
+use priomutex::Mutex;
+use std::sync::Arc;
 use std::thread;
 use std::time::{Duration, Instant};
 
@@ -37,15 +38,23 @@ struct Philosopher {
     name: String,
     left_fork: Arc<Fork>,
     right_fork: Arc<Fork>,
+    hunger: usize,
 }
 
 impl Philosopher {
-    fn new(id: u32, name: &str, left_fork: Arc<Fork>, right_fork: Arc<Fork>) -> Philosopher {
+    fn new(
+        id: u32,
+        name: &str,
+        left_fork: Arc<Fork>,
+        right_fork: Arc<Fork>,
+        hunger: usize,
+    ) -> Philosopher {
         Philosopher {
             id,
             name: name.to_string(),
             left_fork,
             right_fork,
+            hunger,
         }
     }
 
@@ -56,9 +65,9 @@ impl Philosopher {
             (&self.right_fork, &self.left_fork)
         };
 
-        let _first_guard = first_fork.mutex.lock().unwrap();
+        let _first_guard = first_fork.mutex.lock(self.hunger).unwrap();
         println!("{} picked up fork {}.", self.name, first_fork.id);
-        let _second_guard = second_fork.mutex.lock().unwrap();
+        let _second_guard = second_fork.mutex.lock(self.hunger).unwrap();
         println!("{} picked up fork {}.", self.name, second_fork.id);
 
         println!("{} is eating.", self.name);
@@ -84,32 +93,33 @@ fn main() {
         .collect::<Vec<_>>();
 
     let philosophers = vec![
-        ("Jürgen Habermas", 0, 1),
-        ("Friedrich Engels", 1, 2),
-        ("Karl Marx", 2, 3),
-        ("Thomas Piketty", 3, 0),
-        ("Michel Foucault", 0, 1),
-        ("Socrates", 1, 2),
-        ("Plato", 2, 3),
-        ("Aristotle", 3, 0),
-        ("Pythagoras", 0, 1),
-        ("Heraclitus", 1, 2),
-        ("Democritus", 2, 3),
-        ("Diogenes", 3, 0),
-        ("Epicurus", 0, 1),
-        ("Zeno of Citium", 1, 2),
-        ("Thales of Miletus", 2, 3),
-        ("René Descartes", 3, 0),
-        ("Thomas Aquinas", 0, 1),
+        ("Jürgen Habermas", 0, 1, 0),
+        ("Friedrich Engels", 1, 2, 1),
+        ("Karl Marx", 2, 3, 2),
+        ("Thomas Piketty", 3, 0, 3),
+        ("Michel Foucault", 0, 1, 4),
+        ("Socrates", 1, 2, 5),
+        ("Plato", 2, 3, 6),
+        ("Aristotle", 3, 0, 7),
+        ("Pythagoras", 0, 1, 8),
+        ("Heraclitus", 1, 2, 9),
+        ("Democritus", 2, 3, 10),
+        ("Diogenes", 3, 0, 11),
+        ("Epicurus", 0, 1, 12),
+        ("Zeno of Citium", 1, 2, 13),
+        ("Thales of Miletus", 2, 3, 14),
+        ("René Descartes", 3, 0, 15),
+        ("Thomas Aquinas", 0, 1, 16),
     ]
     .into_iter()
     .enumerate()
-    .map(|(id, (name, left, right))| {
+    .map(|(id, (name, left, right, hunger))| {
         Philosopher::new(
             id as u32,
             name,
             Arc::clone(&forks[left]),
             Arc::clone(&forks[right]),
+            hunger,
         )
     })
     .collect::<Vec<_>>();
