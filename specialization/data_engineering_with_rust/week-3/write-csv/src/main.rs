@@ -12,6 +12,8 @@ fn read_csv() -> Result<(), Box<dyn Error>> {
         let discount: f32 = record[1].trim().parse::<f32>().unwrap() * 0.9; // Apply 10% discount
         wtr.write_record(&[record[0].to_string(), discount.to_string()])?; // Write final row
     }
+
+    wtr.flush()?; // Ensure data is written 
     Ok(())
 }
 
