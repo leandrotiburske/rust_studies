@@ -57,7 +57,7 @@ enum Commands {
         compare: String,
         #[clap(long)]
         value: u32,
-    }
+    },
 }
 
 fn main() {
@@ -114,13 +114,28 @@ fn main() {
             println!("{:?}", df2.head(Some(rows)));
         }
 
-        Some(Commands::Filter { path, column, compare,
-             value })
-        => {
+        Some(Commands::Filter {
+            path,
+            column,
+            compare,
+            value,
+        }) => {
             let mut df = polarsdf::read_csv(&path);
-            df = if compare == "greater" { df.clone().lazy().filter(col(&column).gt(lit(value))).collect().unwrap()}
-            else if compare == "less" { df.clone().lazy().filter(col(&column).lt(lit(value))).collect().unwrap()}
-            else {panic!("Could not identify comparison!")}; 
+            df = if compare == "greater" {
+                df.clone()
+                    .lazy()
+                    .filter(col(&column).gt(lit(value)))
+                    .collect()
+                    .unwrap()
+            } else if compare == "less" {
+                df.clone()
+                    .lazy()
+                    .filter(col(&column).lt(lit(value)))
+                    .collect()
+                    .unwrap()
+            } else {
+                panic!("Could not identify comparison!")
+            };
 
             println!("{:?}", df);
         }
