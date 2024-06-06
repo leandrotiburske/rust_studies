@@ -1,0 +1,22 @@
+{
+    "userDataProfilesMigration": true,
+    "profileAssociations": {
+        "workspaces": {},
+        "emptyWindows": {
+            "1717712852048": "__default__profile__"
+        }
+    },
+    "profileAssociationsMigration": true,
+    "telemetry.sqmId": "",
+    "telemetry.machineId": "895b1bd36bf132e531c32cf0e5b718e7a59956ead787a78bce59eb34ea64133f",
+    "telemetry.devDeviceId": "7d56b054-7365-4a54-a5bf-d2b34e0995f1",
+    "backupWorkspaces": {
+        "workspaces": [],
+        "folders": [],
+        "emptyWindows": [
+            {
+                "backupFolder": "1717712852048"
+            }
+        ]
+    }
+}

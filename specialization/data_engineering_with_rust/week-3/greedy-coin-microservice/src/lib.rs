@@ -33,7 +33,7 @@ mod tests {
         assert_eq!(greedy_coin_change(27), vec![25, 1, 1]);
         assert_eq!(greedy_coin_change(28), vec![25, 1, 1, 1]);
         assert_eq!(greedy_coin_change(29), vec![25, 1, 1, 1, 1]);
-        assert_eq!(greedy_coin_change(30), vec![25, 25]);
-        assert_eq!(greedy_coin_change(31), vec![25, 25, 1]);
+        assert_eq!(greedy_coin_change(50), vec![25, 25]);
+        assert_eq!(greedy_coin_change(51), vec![25, 25, 1]);
     }
 }
