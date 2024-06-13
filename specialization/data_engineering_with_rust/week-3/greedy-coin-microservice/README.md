@@ -1,8 +1,12 @@
 # Greedy coin microservice
 
-## To-do list
+## Done
 
-- Add more unit test cases for edge cases.
+- Added more unit test cases for edge cases;
+
+- Ran Docker using this project source code and deployeddocker it.
+
+## To-do list
 
 - Modify the algorithm to take absolute value for negative amounts.
 
@@ -11,9 +15,6 @@
 - Add logging using the Log crate and display in JSON.
 
 - Add a healthcheck endpoint for the service.
-
-- In your own local environment, run Docker 
-using this project source code and deploy it.
 
 ```bash
 docker build -t myimage .
