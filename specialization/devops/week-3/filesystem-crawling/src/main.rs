@@ -5,12 +5,11 @@ use std::path::Path;
 fn walk_path(path: &Path) {
     for entry in fs::read_dir(path).unwrap() {
         let entry = entry.unwrap();
-        println!("Entry path: {}", entry.path().display());
         let path = entry.path();
-        if path.is_dir() {
-            walk_path(&path);
-        } else {
+        if !path.is_dir() {
             println!("{}", path.display());
+        } else {
+            continue;
         }
     }
 }
